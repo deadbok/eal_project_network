@@ -1,0 +1,33 @@
+
+interfaces {
+    lt-0/0/0 {
+        #vSRX-1
+        unit 11 {
+            encapsulation ethernet;
+            peer-unit 21;
+            family inet6 {
+                address fdaa:dead:beef:1::1/127;
+            }
+        }
+        #vSRX-2
+        unit 21 {
+            encapsulation ethernet;
+            peer-unit 11;
+            family inet6 {
+                address fdaa:dead:beef:1::1/127;
+            }
+        }
+    }
+
+routing-instances {
+    #vSRX-1
+    gangstin {
+        instance-type virtual-router;
+        interface lt-0/0/0.11;
+    }
+    #vSRX-2
+    mirakel {
+        instance-type virtual-router;
+        interface lt-0/0/0.21;
+    }
+}
