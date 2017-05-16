@@ -1,0 +1,243 @@
+## Last commit: 2017-05-16 12:10:57 UTC by root
+version 12.1X47-D15.4;
+system {
+    host-name PN1;
+    root-authentication {
+        encrypted-password "$1$fCIRUHvP$IRA/6j/SCLnVjhZq9oAvr."; ## SECRET-DATA
+    }
+    services {
+        ssh;
+        web-management {
+            http {
+                interface ge-0/0/0.0;
+            }
+        }
+    }
+    syslog {
+        user * {
+            any emergency;
+        }
+        file messages {
+            any any;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+    }
+    license {
+        autoupdate {
+            url https://ae1.juniper.net/junos/key_retrieval;
+        }
+    }
+}
+interfaces {
+    ge-0/0/0 {
+        unit 0 {
+            family inet {
+                address 10.7.0.2/24;
+            }
+        }
+    }
+    ge-0/0/1 {
+        unit 0 {
+            family inet {
+                address 172.30.1.1/30;
+            }
+        }
+    }
+    ge-0/0/2 {
+        unit 0 {
+            family inet {
+                address 172.20.1.1/30;
+            }
+        }
+    }
+    ge-0/0/3 {
+        unit 0 {
+            ##
+            ## Warning: configuration block ignored: unsupported platform (firefly-perimeter)
+            ##
+            family ethernet-switching {
+                port-mode trunk;
+                vlan {
+                    members [ vlan100 vlan200 ];
+                }
+            }
+        }
+    }
+    ge-0/0/15 {
+        unit 0 {
+            ##
+            ## Warning: statement ignored: unsupported platform (firefly-perimeter)
+            ##
+            family ethernet-switching;
+        }
+    }
+    ge-0/0/16 {
+        unit 0 {
+            ##
+            ## Warning: statement ignored: unsupported platform (firefly-perimeter)
+            ##
+            family ethernet-switching;
+        }
+    }
+    lo0 {
+        unit 1 {
+            family inet {
+                address 192.168.1.1/32;
+            }
+        }
+        unit 11 {
+            family inet {
+                address 192.168.11.1/32;
+            }
+        }
+        unit 12 {
+            family inet {
+                address 192.168.12.1/32;
+            }
+        }
+    }
+    vlan {
+        unit 100 {
+            family inet {
+                address 172.10.1.1/24;
+            }
+        }
+        unit 200 {
+            family inet {
+                address 172.10.1.2/24;
+            }
+        }
+    }
+}
+snmp {
+    location lab;
+    community community1;
+}
+routing-options {
+    router-id 192.168.1.1;
+    autonomous-system 22;
+}
+protocols {
+    bgp {
+        group external-peers {
+            type external;
+            peer-as 17;
+            neighbor 172.20.1.2;
+        }
+    }
+}
+security {
+    screen {
+        ids-option untrust-screen {
+            icmp {
+                ping-death;
+            }
+            ip {
+                source-route-option;
+                tear-drop;
+            }
+            tcp {
+                syn-flood {
+                    alarm-threshold 1024;
+                    attack-threshold 200;
+                    source-threshold 1024;
+                    destination-threshold 2048;
+                    queue-size 2000; ## Warning: 'queue-size' is deprecated
+                    timeout 20;
+                }
+                land;
+            }
+        }
+    }
+    policies {
+        from-zone trust to-zone trust {
+            policy default-permit {
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    permit;
+                }
+            }
+        }
+        from-zone trust to-zone untrust {
+            policy default-permit {
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    permit;
+                }
+            }
+        }
+        from-zone untrust to-zone trust {
+            policy default-deny {
+                match {
+                    source-address any;
+                    destination-address any;
+                    application any;
+                }
+                then {
+                    deny;
+                }
+            }
+        }
+    }
+    zones {
+        security-zone trust {
+            tcp-rst;
+        }
+        security-zone untrust {
+            screen untrust-screen;
+            interfaces {
+                ge-0/0/0.0 {
+                    host-inbound-traffic {
+                        system-services {
+                            http;
+                            https;
+                            ssh;
+                            telnet;
+                            dhcp;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+routing-instances {
+    v1 {
+        instance-type virtual-router;
+        interface lo0.11;
+        interface vlan.100;
+    }
+    v2 {
+        instance-type virtual-router;
+        interface lo0.12;
+        interface vlan.200;
+    }
+}
+vlans {
+    first-vlan {
+        vlan-id 100;
+        interface {
+            ge-0/0/15.0;
+        }
+        l3-interface vlan.100;
+    }
+    second-vlan {
+        vlan-id 20;
+        interface {
+            ge-0/0/16.0;
+        }
+        l3-interface vlan.200;
+    }
+}
+
