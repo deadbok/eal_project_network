@@ -5,4 +5,5 @@ Vagrant file to set up all the needed machines and networks in Virtual Box.
  * Add OSPF machine/machines
  * Check all networks
  * Handle warnings about .1 addresses
+ * IPv6
  
