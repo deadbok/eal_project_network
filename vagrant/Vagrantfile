@@ -5,10 +5,12 @@ Vagrant.configure(2) do |config|
     srx.vm.hostname = "vSRX1"
     # ge 0/0/1
     srx.vm.network "private_network",
-                    ip: "172.30.1.1"
+                    ip: "172.30.1.1",
+                    virtualbox__intnet: "1_to_3"
     # ge 0/0/2
     srx.vm.network "private_network",
-                    ip: "172.20.1.1"
+                    ip: "172.20.1.1",
+                    virtualbox__intnet: "1_to_2"
     # ge 0/0/3
     srx.vm.network "private_network",
                     ip: "172.10.1.1"
@@ -24,12 +26,32 @@ Vagrant.configure(2) do |config|
     srx.vm.hostname = "vSRX2"
     # ge 0/0/1
     srx.vm.network "private_network",
-                    ip: "172.50.1.1"
+                    ip: "172.50.1.1",
+                    virtualbox__intnet: "2_to_4"
     # ge 0/0/2
     srx.vm.network "private_network",
-                    ip: "172.20.1.2"
+                    ip: "172.20.1.2",
+                    virtualbox__intnet: "1_to_2"
     srx.vm.provider "virtualbox" do |vb|
       vb.name = "project_network_vSRX2"
+      vb.cpus = 2
+      vb.memory = 512
+    end
+  end
+
+  config.vm.define "vSRX3" do |srx|
+    srx.vm.box = "juniper/ffp-12.1X47-D15.4"
+    srx.vm.hostname = "vSRX3"
+    # ge 0/0/1
+    srx.vm.network "private_network",
+                    ip: "172.30.1.3",
+                    virtualbox__intnet: "1_to_2"
+    # ge 0/0/2
+    srx.vm.network "private_network",
+                    ip: "172.90.1.1",
+                    virtualbox__intnet: "3_to_7"
+    srx.vm.provider "virtualbox" do |vb|
+      vb.name = "project_network_vSRX3"
       vb.cpus = 2
       vb.memory = 512
     end
@@ -40,10 +62,12 @@ Vagrant.configure(2) do |config|
     srx.vm.hostname = "vSRX4"
     # ge 0/0/1
     srx.vm.network "private_network",
-                    ip: "172.50.1.2"
+                    ip: "172.50.1.2",
+                    virtualbox__intnet: "2_to_4"
     # ge 0/0/2
     srx.vm.network "private_network",
-                    ip: "172.60.1.1"
+                    ip: "172.60.1.1",
+                    virtualbox__intnet: "4_to_5"
     srx.vm.provider "virtualbox" do |vb|
       vb.name = "project_network_vSRX4"
       vb.cpus = 2
@@ -56,10 +80,12 @@ Vagrant.configure(2) do |config|
     srx.vm.hostname = "vSRX5"
     # ge 0/0/1
     srx.vm.network "private_network",
-                    ip: "172.70.1.1"
+                    ip: "172.60.1.2",
+                    virtualbox__intnet: "4_to_6"
     # ge 0/0/2
     srx.vm.network "private_network",
-                    ip: "172.60.1.2"
+                    ip: "172.70.1.1",
+                    virtualbox__intnet: "5_to_6"
     srx.vm.provider "virtualbox" do |vb|
       vb.name = "project_network_vSRX5"
       vb.cpus = 2
@@ -72,10 +98,12 @@ Vagrant.configure(2) do |config|
     srx.vm.hostname = "vSRX6"
     # ge 0/0/1
     srx.vm.network "private_network",
-                    ip: "172.70.1.2"
+                    ip: "172.70.1.2",
+                    virtualbox__intnet: "5_to_6"
     # ge 0/0/2
     srx.vm.network "private_network",
-                    ip: "172.80.1.2"
+                    ip: "172.80.1.2",
+                    virtualbox__intnet: "6_to_7"
     srx.vm.provider "virtualbox" do |vb|
       vb.name = "project_network_vSRX6"
       vb.cpus = 2
@@ -88,10 +116,12 @@ Vagrant.configure(2) do |config|
     srx.vm.hostname = "vSRX7"
     # ge 0/0/1
     srx.vm.network "private_network",
-                    ip: "172.90.1.2"
+                    ip: "172.90.1.2",
+                    virtualbox__intnet: "3_to_7"
     # ge 0/0/2
     srx.vm.network "private_network",
-                    ip: "172.80.1.1"
+                    ip: "172.80.1.1",
+                    virtualbox__intnet: "6_to_7"
     srx.vm.provider "virtualbox" do |vb|
       vb.name = "project_network_vSRX7"
       vb.cpus = 2
