@@ -1,0 +1,116 @@
+interfaces {
+    ge-0/0/0 {
+        unit 0 {
+            family inet {
+                address 10.210.14.150/24;
+            }
+        }
+    }
+    ge-0/0/5 {
+        unit 0 {
+            family inet {
+                address 10.0.0.45/30;
+            }
+        }
+    }
+    ge-0/0/6 {
+        unit 0 {
+            family inet {
+                address 10.0.0.38/30;
+            }
+            family iso;
+        }
+    }
+    ge-0/0/7 {
+        unit 0 {
+            family inet {
+                address 10.0.0.37/30;
+            }
+            family iso;
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                address 176.16.1.2/32;
+            }
+            family iso {
+                address 49.0002.0172.0016.0907.00;
+            }
+        }
+        unit 1 {
+            family inet {
+                address 172.16.3.5/32;
+            }
+            family iso {
+                address 49.0002.0172.0016.0305.00;
+            }
+        }
+    }
+}
+routing-options {
+    autonomous-system 17;
+}
+protocols {
+    isis {
+        export [ ospf-isis send-direct-to-isis-neighbors ];
+        interface ge-0/0/7.0;
+        interface lo0.0;
+    }
+    ospf {
+        export send-direct-to-ospf-neighbors;
+        area 0.0.0.1 {
+            interface ge-0/0/5.0;
+            interface lo0.0 {
+                passive;
+            }
+        }
+    }
+}
+policy-options {
+    policy-statement ospf-isis {
+        term 1 {
+            from {
+                protocol ospf;
+                route-filter 192.168.0.0/22 longer;
+            }
+            then accept;
+        }
+    }
+    policy-statement send-direct-to-isis-neighbors {
+        from {
+            protocol direct;
+            route-filter 10.0.0.44/30 exact;
+        }
+        then accept;
+    }
+    policy-statement send-direct-to-ospf-neighbors {
+        from {
+            protocol direct;
+            route-filter 10.0.0.36/30 exact;
+        }
+        then accept;
+    }
+}
+security {
+    forwarding-options {
+        family {
+            mpls {
+                mode packet-based;
+            }
+        }
+    }
+}
+routing-instances {
+    buddy {
+        instance-type virtual-router;
+        interface ge-0/0/6.0;
+        interface lo0.1;
+        protocols {
+            isis {
+                interface ge-0/0/6.0;
+                interface lo0.1;
+            }
+        }
+    }
+}

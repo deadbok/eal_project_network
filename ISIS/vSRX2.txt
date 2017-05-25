@@ -1,0 +1,42 @@
+interfaces {
+    ge-0/0/0 {
+        unit 0;
+    }
+    ge-0/0/1 {
+        unit 0 {
+            description to-vSRX1;
+            family inet {
+                address 10.0.0.2/30;
+            }
+            family iso;
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                address 192.168.0.2/32;
+            }
+            family iso {
+                address 49.0002.0192.0168.0002.00;
+            }
+        }
+    }
+}
+protocols {
+    isis {
+        interface ge-0/0/1.0;
+        interface lo0.0;
+    }
+}
+security {
+    forwarding-options {
+        family {
+            mpls {
+                mode packet-based;
+            }
+            iso {
+                mode packet-based;
+            }
+        }
+    }
+}
