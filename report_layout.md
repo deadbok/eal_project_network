@@ -1,7 +1,7 @@
 # Report structure #
 
  * Introduction - for the CEO
- * Technichal
+ * Technical
  * Financial - for the CFO
 
 # Topics
