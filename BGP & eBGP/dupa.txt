@@ -1,0 +1,170 @@
+interfaces {
+    ge-0/0/0 {
+        unit 0;
+    }
+    lt-0/0/0 {
+        unit 1 {
+            encapsulation ethernet;
+            peer-unit 2;
+            family inet {
+                address 10.0.0.1/30;
+            }
+        }
+        unit 2 {
+            encapsulation ethernet;
+            peer-unit 1;
+            family inet {
+                address 10.0.0.2/30;
+            }
+        }
+        unit 3 {
+            encapsulation ethernet;
+            peer-unit 4;
+            family inet {
+                address 10.0.1.1/30;
+            }
+        }
+        unit 4 {
+            encapsulation ethernet;
+            peer-unit 3;
+            family inet {
+                address 10.0.1.2/30;
+            }
+        }
+    }
+    lo0 {
+        unit 0 {
+            family inet {
+                address 192.168.6.5/32;
+            }
+        }
+        unit 1 {
+            family inet {
+                address 192.163.6.4/32;
+            }
+        }
+        unit 2 {
+            family inet {
+                address 192.168.40.4/32;
+            }
+        }
+    }
+}
+policy-options {
+    policy-statement send-direct1 {
+        term 2 {
+            from protocol direct;
+            then accept;
+        }
+    }
+    policy-statement send-direct2 {
+        term 2 {
+            from protocol direct;
+            then accept;
+        }
+    }
+    policy-statement send-direct3 {
+        term 2 {
+            from protocol direct;
+            then accept;
+        }
+    }
+}
+security {
+    forwarding-options {
+        family {
+            mpls {
+                mode packet-based;
+            }
+        }
+    }
+}
+routing-instances {
+    A {
+        instance-type virtual-router;
+        interface lt-0/0/0.1;
+        interface lo0.0;
+        routing-options {
+            router-id 192.168.6.5;
+            autonomous-system 17;
+        }
+        protocols {
+            bgp {
+                group internal-peers {
+                    type internal;
+                    description "connections to B and C";
+                    local-address 192.168.6.5;
+                    export send-direct1;
+                    neighbor 192.163.6.4;
+                    neighbor 192.168.40.4;
+                }
+            }
+            ospf {
+                area 0.0.0.0 {
+                    interface lo0.0 {
+                        passive;
+                    }
+                    interface lt-0/0/0.1;
+                }
+            }
+        }
+    }
+    B {
+        instance-type virtual-router;
+        interface lt-0/0/0.2;
+        interface lt-0/0/0.3;
+        interface lo0.1;
+        routing-options {
+            router-id 192.168.6.4;
+            autonomous-system 17;
+        }
+        protocols {
+            bgp {
+                export send-direct2;
+                group internal-peers {
+                    type internal;
+                    description "connection to A and C";
+                    local-address 192.163.6.4;
+                    neighbor 192.168.40.4;
+                    neighbor 192.168.6.5;
+                }
+            }
+            ospf {
+                area 0.0.0.0 {
+                    interface lo0.1;
+                    interface lt-0/0/0.2;
+                    interface lt-0/0/0.3;
+                }
+            }
+        }
+    }
+    C {
+        instance-type virtual-router;
+        interface lt-0/0/0.4;
+        interface lo0.2;
+        routing-options {
+            router-id 192.168.40.4;
+            autonomous-system 17;
+        }
+        protocols {
+            bgp {
+                group internal-peers {
+                    type internal;
+                    description "connections to A and B";
+                    local-address 192.168.40.4;
+                    export send-direct3;
+                    neighbor 192.163.6.4;
+                    neighbor 192.168.6.5;
+                }
+            }
+            ospf {
+                area 0.0.0.0 {
+                    interface lo0.2 {
+                        passive;
+                    }
+                    interface lt-0/0/0.4;
+                }
+            }
+        }
+    }
+}
