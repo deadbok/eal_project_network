@@ -1,0 +1,12 @@
+lab@srxC-1> show vlans detail
+VLAN: default, 802.1Q Tag: 1, Admin State: Enabled
+
+VLAN: vlan100, 802.1Q Tag: 100, Admin State: Enabled
+  Primary IP: 192.168.100.1/24
+Number of interfaces: 1 (Active = 1)
+  Tagged interfaces: ge-0/0/5.0*
+
+VLAN: vlan200, 802.1Q Tag: 200, Admin State: Enabled
+  Primary IP: 192.168.200.1/24
+Number of interfaces: 1 (Active = 1)
+  Tagged interfaces: ge-0/0/5.0*

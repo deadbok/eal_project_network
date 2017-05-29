@@ -1,22 +1,22 @@
 root@vSRX1> show bgp summary
 Groups: 5 Peers: 9 Down peers: 2
 Peer                     AS      InPkt     OutPkt    OutQ   Flaps Last Up/Dwn State|#Active/Received/Accepted/Damped...
-172.20.5.2               30        148        148       0       0     1:05:07 Establ
+172.20.5.2               30         10         11       0       0        3:11 Establ
   vR4.inet.0: 2/3/3/0
-192.168.20.1             20        147        147       0       0     1:04:10 Establ
-  vR2.inet.0: 3/6/6/0
-192.168.20.1             20        150        148       0       0     1:04:14 Establ
-  vR3.inet.0: 3/6/6/0
-192.168.20.1             20        145        148       0       0     1:04:02 Establ
-  vR4.inet.0: 0/3/3/0
-192.168.20.2             20        147        148       0       0     1:04:10 Establ
-  vR1.inet.0: 0/3/3/0
-192.168.20.2             20          0         54       0       0     1:05:39 Active
-192.168.20.3             20        147        150       0       0     1:04:14 Establ
-  vR1.inet.0: 0/2/2/0
-192.168.20.3             20          0         54       0       0     1:05:39 Active
-192.168.20.4             20        148        146       0       0     1:04:02 Establ
-  vR1.inet.0: 3/5/5/0
+192.168.20.1             20         14         12       0       0        2:25 Establ
+  vR2.inet.0: 3/10/7/0
+192.168.20.1             20         12         11       0       0        2:17 Establ
+  vR3.inet.0: 3/10/10/0
+192.168.20.1             20          9         12       0       0        2:05 Establ
+  vR4.inet.0: 0/7/6/0
+192.168.20.2             20         11         14       0       0        2:25 Establ
+  vR1.inet.0: 0/7/4/0
+192.168.20.2             20          0          4       0       0        3:43 Active
+192.168.20.3             20         10         12       0       0        2:17 Establ
+  vR1.inet.0: 0/7/7/0
+192.168.20.3             20          0          4       0       0        3:43 Active
+192.168.20.4             20         12         10       0       0        2:05 Establ
+  vR1.inet.0: 3/10/5/0
 
 root@vSRX1> show bgp group
 Group Type: Internal    AS: 20                     Local AS: 20
@@ -25,18 +25,18 @@ Group Type: Internal    AS: 20                     Local AS: 20
   Options: <Cluster>
   Holdtime: 0
   Total peers: 3        Established: 3
-  192.168.20.4+64026
-  192.168.20.2+62504
+  192.168.20.4+54693
+  192.168.20.2+179
   192.168.20.3+179
-  vR1.inet.0: 3/10/10/0
+  vR1.inet.0: 3/24/16/0
 
 Group Type: Internal    AS: 20                     Local AS: 20
   Name: internal-peers  Index: 1                   Flags: <Export Eval>
   Export: [ send-direct send-ospf ]
   Holdtime: 0
   Total peers: 1        Established: 1
-  192.168.20.1+179
-  vR2.inet.0: 3/6/6/0
+  192.168.20.1+54090
+  vR2.inet.0: 3/10/7/0
 
 Group Type: Internal    AS: 20                     Local AS: 20
   Name: internal-peers  Index: 2                   Flags: <Export Eval>
@@ -44,7 +44,7 @@ Group Type: Internal    AS: 20                     Local AS: 20
   Holdtime: 0
   Total peers: 1        Established: 1
   192.168.20.1+57784
-  vR3.inet.0: 3/6/6/0
+  vR3.inet.0: 3/10/10/0
 
 Group Type: Internal    AS: 20                     Local AS: 20
   Name: internal-peers  Index: 3                   Flags: <Export Eval>
@@ -54,37 +54,36 @@ Group Type: Internal    AS: 20                     Local AS: 20
   192.168.20.1+179
   192.168.20.2
   192.168.20.3
-  vR4.inet.0: 0/3/3/0
+  vR4.inet.0: 0/7/6/0
 
 Group Type: External                               Local AS: 20
-  Name: external-peers  Index: 4                   Flags: <Export Eval>
+  Name: external-peers  Index: 4                   Flags: <>
   Options: <AdvertisePeerAs>
   Holdtime: 0
   Total peers: 1        Established: 1
-  172.20.5.2+54397
+  172.20.5.2+179
   vR4.inet.0: 2/3/3/0
 
 Groups: 5  Peers: 9    External: 1    Internal: 8    Down peers: 2   Flaps: 0
 Table          Tot Paths  Act Paths Suppressed    History Damp State    Pending
-vR1.inet.0            10          3          0          0          0          0
-vR2.inet.0             6          3          0          0          0          0
-vR3.inet.0             6          3          0          0          0          0
-vR4.inet.0             6          2          0          0          0          0
+vR1.inet.0            24          3          0          0          0          0
+vR2.inet.0            10          3          0          0          0          0
+vR3.inet.0            10          3          0          0          0          0
+vR4.inet.0            10          2          0          0          0          0
 vR1.mdt.0              0          0          0          0          0          0
 vR2.mdt.0              0          0          0          0          0          0
 vR3.mdt.0              0          0          0          0          0          0
 vR4.mdt.0              0          0          0          0          0          0
 
 root@vSRX1> show bgp neighbor | no-more
-Peer: 172.20.5.2+54397 AS 30   Local: 172.20.5.1+179 AS 20
+Peer: 172.20.5.2+179 AS 30     Local: 172.20.5.1+50881 AS 20
   Type: External    State: Established    Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
-  Last Error: Cease
+  Last Error: None
   Options: <Preference PeerAS Refresh>
   Options: <AdvertisePeerAs>
   Holdtime: 90 Preference: 170
   Number of flaps: 0
-  Error: 'Cease' Sent: 1 Recv: 0
   Peer ID: 192.168.30.4    Local ID: 192.168.20.4      Active Holdtime: 90
   Keepalive Interval: 30         Peer index: 0
   BFD: disabled, down
@@ -109,12 +108,12 @@ Peer: 172.20.5.2+54397 AS 30   Local: 172.20.5.1+179 AS 20
     Accepted prefixes:            3
     Suppressed due to damping:    0
     Advertised prefixes:          2
-  Last traffic (seconds): Received 26   Sent 13   Checked 45
-  Input messages:  Total 148    Updates 4       Refreshes 0     Octets 2946
-  Output messages: Total 148    Updates 3       Refreshes 0     Octets 2969
+  Last traffic (seconds): Received 11   Sent 15   Checked 58
+  Input messages:  Total 11     Updates 2       Refreshes 0     Octets 251
+  Output messages: Total 12     Updates 1       Refreshes 0     Octets 329
   Output Queue[3]: 0
 
-Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.2+62504 AS 20
+Peer: 192.168.20.1+54090 AS 20 Local: 192.168.20.2+179 AS 20
   Type: Internal    State: Established    Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
@@ -141,13 +140,13 @@ Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.2+62504 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              3
-    Received prefixes:            6
-    Accepted prefixes:            6
+    Received prefixes:            10
+    Accepted prefixes:            7
     Suppressed due to damping:    0
-    Advertised prefixes:          3
-  Last traffic (seconds): Received 12   Sent 12   Checked 56
-  Input messages:  Total 148    Updates 8       Refreshes 0     Octets 3094
-  Output messages: Total 148    Updates 5       Refreshes 0     Octets 3055
+    Advertised prefixes:          7
+  Last traffic (seconds): Received 17   Sent 17   Checked 4
+  Input messages:  Total 15     Updates 7       Refreshes 0     Octets 583
+  Output messages: Total 13     Updates 4       Refreshes 0     Octets 466
   Output Queue[1]: 0
 
 Peer: 192.168.20.1+57784 AS 20 Local: 192.168.20.3+179 AS 20
@@ -177,16 +176,16 @@ Peer: 192.168.20.1+57784 AS 20 Local: 192.168.20.3+179 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              3
-    Received prefixes:            6
-    Accepted prefixes:            6
+    Received prefixes:            10
+    Accepted prefixes:            10
     Suppressed due to damping:    0
-    Advertised prefixes:          2
-  Last traffic (seconds): Received 17   Sent 17   Checked 63
-  Input messages:  Total 150    Updates 8       Refreshes 0     Octets 3172
-  Output messages: Total 148    Updates 5       Refreshes 0     Octets 3060
+    Advertised prefixes:          7
+  Last traffic (seconds): Received 3    Sent 6    Checked 80
+  Input messages:  Total 14     Updates 7       Refreshes 0     Octets 564
+  Output messages: Total 13     Updates 4       Refreshes 0     Octets 466
   Output Queue[2]: 0
 
-Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.4+64026 AS 20
+Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.4+54693 AS 20
   Type: Internal    State: Established    Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
@@ -213,16 +212,16 @@ Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.4+64026 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              0
-    Received prefixes:            3
-    Accepted prefixes:            3
+    Received prefixes:            7
+    Accepted prefixes:            6
     Suppressed due to damping:    0
-    Advertised prefixes:          5
-  Last traffic (seconds): Received 26   Sent 25   Checked 46
-  Input messages:  Total 145    Updates 6       Refreshes 0     Octets 2939
-  Output messages: Total 148    Updates 6       Refreshes 0     Octets 3105
+    Advertised prefixes:          10
+  Last traffic (seconds): Received 28   Sent 28   Checked 68
+  Input messages:  Total 10     Updates 5       Refreshes 0     Octets 350
+  Output messages: Total 13     Updates 5       Refreshes 0     Octets 511
   Output Queue[3]: 0
 
-Peer: 192.168.20.2+62504 AS 20 Local: 192.168.20.1+179 AS 20
+Peer: 192.168.20.2+179 AS 20   Local: 192.168.20.1+54090 AS 20
   Type: Internal    State: Established  (route reflector client)Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
@@ -231,7 +230,7 @@ Peer: 192.168.20.2+62504 AS 20 Local: 192.168.20.1+179 AS 20
   Local Address: 192.168.20.1 Holdtime: 90 Preference: 170
   Number of flaps: 0
   Peer ID: 192.168.20.2    Local ID: 192.168.20.1      Active Holdtime: 90
-  Keepalive Interval: 30         Peer index: 1
+  Keepalive Interval: 30         Peer index: 0
   BFD: disabled, down
   NLRI for restart configured on peer: inet-unicast
   NLRI advertised by peer: inet-unicast
@@ -249,13 +248,13 @@ Peer: 192.168.20.2+62504 AS 20 Local: 192.168.20.1+179 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              0
-    Received prefixes:            3
-    Accepted prefixes:            3
+    Received prefixes:            7
+    Accepted prefixes:            4
     Suppressed due to damping:    0
-    Advertised prefixes:          6
-  Last traffic (seconds): Received 12   Sent 12   Checked 56
-  Input messages:  Total 148    Updates 6       Refreshes 0     Octets 3036
-  Output messages: Total 149    Updates 7       Refreshes 0     Octets 3172
+    Advertised prefixes:          10
+  Last traffic (seconds): Received 17   Sent 17   Checked 4
+  Input messages:  Total 12     Updates 5       Refreshes 0     Octets 388
+  Output messages: Total 15     Updates 6       Refreshes 0     Octets 602
   Output Queue[0]: 0
 
 Peer: 192.168.20.2 AS 20       Local: 192.168.20.4 AS 20
@@ -276,7 +275,7 @@ Peer: 192.168.20.3+179 AS 20   Local: 192.168.20.1+57784 AS 20
   Local Address: 192.168.20.1 Holdtime: 90 Preference: 170
   Number of flaps: 0
   Peer ID: 192.168.20.3    Local ID: 192.168.20.1      Active Holdtime: 90
-  Keepalive Interval: 30         Peer index: 0
+  Keepalive Interval: 30         Peer index: 1
   BFD: disabled, down
   NLRI for restart configured on peer: inet-unicast
   NLRI advertised by peer: inet-unicast
@@ -294,13 +293,13 @@ Peer: 192.168.20.3+179 AS 20   Local: 192.168.20.1+57784 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              0
-    Received prefixes:            2
-    Accepted prefixes:            2
+    Received prefixes:            7
+    Accepted prefixes:            7
     Suppressed due to damping:    0
-    Advertised prefixes:          6
-  Last traffic (seconds): Received 17   Sent 17   Checked 64
-  Input messages:  Total 147    Updates 6       Refreshes 0     Octets 2982
-  Output messages: Total 150    Updates 7       Refreshes 0     Octets 3191
+    Advertised prefixes:          10
+  Last traffic (seconds): Received 6    Sent 3    Checked 80
+  Input messages:  Total 12     Updates 5       Refreshes 0     Octets 388
+  Output messages: Total 14     Updates 6       Refreshes 0     Octets 583
   Output Queue[0]: 0
 
 Peer: 192.168.20.3 AS 20       Local: 192.168.20.4 AS 20
@@ -312,7 +311,7 @@ Peer: 192.168.20.3 AS 20       Local: 192.168.20.4 AS 20
   Local Address: 192.168.20.4 Holdtime: 90 Preference: 170
   Number of flaps: 0
 
-Peer: 192.168.20.4+64026 AS 20 Local: 192.168.20.1+179 AS 20
+Peer: 192.168.20.4+54693 AS 20 Local: 192.168.20.1+179 AS 20
   Type: Internal    State: Established  (route reflector client)Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
@@ -339,11 +338,11 @@ Peer: 192.168.20.4+64026 AS 20 Local: 192.168.20.1+179 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              3
-    Received prefixes:            5
+    Received prefixes:            10
     Accepted prefixes:            5
     Suppressed due to damping:    0
-    Advertised prefixes:          3
-  Last traffic (seconds): Received 25   Sent 26   Checked 46
-  Input messages:  Total 148    Updates 7       Refreshes 0     Octets 3086
-  Output messages: Total 146    Updates 5       Refreshes 0     Octets 3017
+    Advertised prefixes:          7
+  Last traffic (seconds): Received 28   Sent 28   Checked 68
+  Input messages:  Total 13     Updates 6       Refreshes 0     Octets 492
+  Output messages: Total 11     Updates 4       Refreshes 0     Octets 428
   Output Queue[0]: 0

@@ -1,49 +1,49 @@
 root@vSRX2> show bgp summary
 Groups: 5 Peers: 9 Down peers: 2
 Peer                     AS      InPkt     OutPkt    OutQ   Flaps Last Up/Dwn State|#Active/Received/Accepted/Damped...
-172.20.5.1               20        140        141       0       0     1:02:01 Establ
+172.20.5.1               20         15         15       0       0        5:15 Establ
   vR4.inet.0: 0/0/0/0
-192.168.30.1             30        143        140       0       0     1:01:21 Establ
+192.168.30.1             30         17         16       0       0        4:26 Establ
   vR2.inet.0: 1/8/5/0
-192.168.30.1             30        142        140       0       0     1:01:13 Establ
+192.168.30.1             30         16         16       0       0        4:18 Establ
   vR3.inet.0: 1/8/8/0
-192.168.30.1             30        138        145       0       0     1:01:01 Establ
+192.168.30.1             30         14         15       0       0        4:06 Establ
   vR4.inet.0: 0/7/6/0
-192.168.30.2             30        139        143       0       0     1:01:21 Establ
+192.168.30.2             30         15         17       0       0        4:26 Establ
   vR1.inet.0: 0/7/4/0
-192.168.30.2             30          0         52       0       0     1:02:43 Active
-192.168.30.3             30        139        142       0       0     1:01:13 Establ
+192.168.30.2             30          0          6       0       0        5:45 Active
+192.168.30.3             30         15         16       0       0        4:18 Establ
   vR1.inet.0: 0/7/7/0
-192.168.30.3             30          0         54       0       0     1:02:43 Active
-192.168.30.4             30        145        139       0       0     1:01:01 Establ
+192.168.30.3             30          0          8       0       0        5:45 Active
+192.168.30.4             30         15         15       0       0        4:06 Establ
   vR1.inet.0: 1/8/3/0
 
 root@vSRX2> show bgp group
 Group Type: Internal    AS: 30                     Local AS: 30
-  Name: internal-peers  Index: 0                   Flags: <>
+  Name: internal-peers  Index: 0                   Flags: <Export Eval>
   Export: [ send-direct send-ospf ]
   Options: <Cluster>
   Holdtime: 0
   Total peers: 3        Established: 3
-  192.168.30.4+49754
+  192.168.30.4+54468
   192.168.30.2+179
   192.168.30.3+179
   vR1.inet.0: 1/22/14/0
 
 Group Type: Internal    AS: 30                     Local AS: 30
-  Name: internal-peers  Index: 1                   Flags: <>
+  Name: internal-peers  Index: 1                   Flags: <Export Eval>
   Export: [ send-direct send-ospf ]
   Holdtime: 0
   Total peers: 1        Established: 1
-  192.168.30.1+63900
+  192.168.30.1+51614
   vR2.inet.0: 1/8/5/0
 
 Group Type: Internal    AS: 30                     Local AS: 30
-  Name: internal-peers  Index: 2                   Flags: <>
+  Name: internal-peers  Index: 2                   Flags: <Export Eval>
   Export: [ send-direct send-ospf ]
   Holdtime: 0
   Total peers: 1        Established: 1
-  192.168.30.1+60692
+  192.168.30.1+49694
   vR3.inet.0: 1/8/8/0
 
 Group Type: Internal    AS: 30                     Local AS: 30
@@ -57,12 +57,12 @@ Group Type: Internal    AS: 30                     Local AS: 30
   vR4.inet.0: 0/7/6/0
 
 Group Type: External                               Local AS: 30
-  Name: external-peers  Index: 4                   Flags: <>
+  Name: external-peers  Index: 4                   Flags: <Export Eval>
   Export: [ send-direct ]
   Options: <AdvertisePeerAs>
   Holdtime: 0
   Total peers: 1        Established: 1
-  172.20.5.1+179
+  172.20.5.1+50881
   vR4.inet.0: 0/0/0/0
 
 Groups: 5  Peers: 9    External: 1    Internal: 8    Down peers: 2   Flaps: 0
@@ -77,8 +77,8 @@ vR3.mdt.0              0          0          0          0          0          0
 vR4.mdt.0              0          0          0          0          0          0
 
 root@vSRX2> show bgp neighbor | no-more
-Peer: 172.20.5.1+179 AS 20     Local: 172.20.5.2+54397 AS 30
-  Type: External    State: Established    Flags: <Sync>
+Peer: 172.20.5.1+50881 AS 20   Local: 172.20.5.2+179 AS 30
+  Type: External    State: Established    Flags: <ImportEval Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
   Export: [ send-direct ]
@@ -110,13 +110,13 @@ Peer: 172.20.5.1+179 AS 20     Local: 172.20.5.2+54397 AS 30
     Accepted prefixes:            0
     Suppressed due to damping:    0
     Advertised prefixes:          3
-  Last traffic (seconds): Received 9    Sent 21   Checked 28
-  Input messages:  Total 141    Updates 4       Refreshes 0     Octets 2777
-  Output messages: Total 142    Updates 3       Refreshes 0     Octets 2851
+  Last traffic (seconds): Received 7    Sent 27   Checked 76
+  Input messages:  Total 16     Updates 2       Refreshes 0     Octets 386
+  Output messages: Total 15     Updates 1       Refreshes 0     Octets 386
   Output Queue[3]: 0
 
-Peer: 192.168.30.1+63900 AS 30 Local: 192.168.30.2+179 AS 30
-  Type: Internal    State: Established    Flags: <Sync>
+Peer: 192.168.30.1+51614 AS 30 Local: 192.168.30.2+179 AS 30
+  Type: Internal    State: Established    Flags: <ImportEval Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
   Export: [ send-direct send-ospf ]
@@ -146,13 +146,13 @@ Peer: 192.168.30.1+63900 AS 30 Local: 192.168.30.2+179 AS 30
     Accepted prefixes:            5
     Suppressed due to damping:    0
     Advertised prefixes:          7
-  Last traffic (seconds): Received 3    Sent 3    Checked 75
-  Input messages:  Total 145    Updates 8       Refreshes 0     Octets 3067
-  Output messages: Total 142    Updates 4       Refreshes 0     Octets 2917
+  Last traffic (seconds): Received 27   Sent 2    Checked 22
+  Input messages:  Total 17     Updates 6       Refreshes 0     Octets 566
+  Output messages: Total 17     Updates 4       Refreshes 0     Octets 542
   Output Queue[1]: 0
 
-Peer: 192.168.30.1+60692 AS 30 Local: 192.168.30.3+179 AS 30
-  Type: Internal    State: Established    Flags: <Sync>
+Peer: 192.168.30.1+49694 AS 30 Local: 192.168.30.3+179 AS 30
+  Type: Internal    State: Established    Flags: <ImportEval Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
   Export: [ send-direct send-ospf ]
@@ -182,13 +182,13 @@ Peer: 192.168.30.1+60692 AS 30 Local: 192.168.30.3+179 AS 30
     Accepted prefixes:            8
     Suppressed due to damping:    0
     Advertised prefixes:          7
-  Last traffic (seconds): Received 23   Sent 0    Checked 72
-  Input messages:  Total 143    Updates 8       Refreshes 0     Octets 3029
-  Output messages: Total 142    Updates 4       Refreshes 0     Octets 2917
+  Last traffic (seconds): Received 26   Sent 27   Checked 15
+  Input messages:  Total 16     Updates 6       Refreshes 0     Octets 547
+  Output messages: Total 16     Updates 4       Refreshes 0     Octets 523
   Output Queue[2]: 0
 
-Peer: 192.168.30.1+179 AS 30   Local: 192.168.30.4+49754 AS 30
-  Type: Internal    State: Established    Flags: <Sync>
+Peer: 192.168.30.1+179 AS 30   Local: 192.168.30.4+54468 AS 30
+  Type: Internal    State: Established    Flags: <ImportEval Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
   Export: [ send-direct send-ospf ]
@@ -218,13 +218,13 @@ Peer: 192.168.30.1+179 AS 30   Local: 192.168.30.4+49754 AS 30
     Accepted prefixes:            6
     Suppressed due to damping:    0
     Advertised prefixes:          8
-  Last traffic (seconds): Received 5    Sent 5    Checked 54
-  Input messages:  Total 139    Updates 5       Refreshes 0     Octets 2801
-  Output messages: Total 147    Updates 10      Refreshes 0     Octets 3221
+  Last traffic (seconds): Received 10   Sent 9    Checked 5
+  Input messages:  Total 14     Updates 5       Refreshes 0     Octets 426
+  Output messages: Total 16     Updates 4       Refreshes 0     Octets 527
   Output Queue[3]: 0
 
-Peer: 192.168.30.2+179 AS 30   Local: 192.168.30.1+63900 AS 30
-  Type: Internal    State: Established  (route reflector client)Flags: <Sync>
+Peer: 192.168.30.2+179 AS 30   Local: 192.168.30.1+51614 AS 30
+  Type: Internal    State: Established  (route reflector client)Flags: <ImportEval Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
   Export: [ send-direct send-ospf ]
@@ -254,9 +254,9 @@ Peer: 192.168.30.2+179 AS 30   Local: 192.168.30.1+63900 AS 30
     Accepted prefixes:            4
     Suppressed due to damping:    0
     Advertised prefixes:          8
-  Last traffic (seconds): Received 3    Sent 3    Checked 75
-  Input messages:  Total 141    Updates 5       Refreshes 0     Octets 2839
-  Output messages: Total 145    Updates 7       Refreshes 0     Octets 3086
+  Last traffic (seconds): Received 2    Sent 0    Checked 22
+  Input messages:  Total 16     Updates 5       Refreshes 0     Octets 464
+  Output messages: Total 18     Updates 5       Refreshes 0     Octets 604
   Output Queue[0]: 0
 
 Peer: 192.168.30.2 AS 30       Local: 192.168.30.4 AS 30
@@ -267,10 +267,10 @@ Peer: 192.168.30.2 AS 30       Local: 192.168.30.4 AS 30
   Options: <Preference LocalAddress Refresh>
   Local Address: 192.168.30.4 Holdtime: 90 Preference: 170
   Number of flaps: 0
-  Error: 'Open Message Error' Sent: 26 Recv: 0
+  Error: 'Open Message Error' Sent: 3 Recv: 0
 
-Peer: 192.168.30.3+179 AS 30   Local: 192.168.30.1+60692 AS 30
-  Type: Internal    State: Established  (route reflector client)Flags: <Sync>
+Peer: 192.168.30.3+179 AS 30   Local: 192.168.30.1+49694 AS 30
+  Type: Internal    State: Established  (route reflector client)Flags: <ImportEval Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
   Export: [ send-direct send-ospf ]
@@ -300,9 +300,9 @@ Peer: 192.168.30.3+179 AS 30   Local: 192.168.30.1+60692 AS 30
     Accepted prefixes:            7
     Suppressed due to damping:    0
     Advertised prefixes:          8
-  Last traffic (seconds): Received 0    Sent 23   Checked 75
-  Input messages:  Total 141    Updates 5       Refreshes 0     Octets 2839
-  Output messages: Total 143    Updates 7       Refreshes 0     Octets 3048
+  Last traffic (seconds): Received 27   Sent 26   Checked 18
+  Input messages:  Total 15     Updates 5       Refreshes 0     Octets 445
+  Output messages: Total 16     Updates 5       Refreshes 0     Octets 566
   Output Queue[0]: 0
 
 Peer: 192.168.30.3 AS 30       Local: 192.168.30.4 AS 30
@@ -313,10 +313,10 @@ Peer: 192.168.30.3 AS 30       Local: 192.168.30.4 AS 30
   Options: <Preference LocalAddress Refresh>
   Local Address: 192.168.30.4 Holdtime: 90 Preference: 170
   Number of flaps: 0
-  Error: 'Open Message Error' Sent: 27 Recv: 0
+  Error: 'Open Message Error' Sent: 4 Recv: 0
 
-Peer: 192.168.30.4+49754 AS 30 Local: 192.168.30.1+179 AS 30
-  Type: Internal    State: Established  (route reflector client)Flags: <Sync>
+Peer: 192.168.30.4+54468 AS 30 Local: 192.168.30.1+179 AS 30
+  Type: Internal    State: Established  (route reflector client)Flags: <ImportEval Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
   Export: [ send-direct send-ospf ]
@@ -346,7 +346,6 @@ Peer: 192.168.30.4+49754 AS 30 Local: 192.168.30.1+179 AS 30
     Accepted prefixes:            3
     Suppressed due to damping:    0
     Advertised prefixes:          7
-  Last traffic (seconds): Received 5    Sent 5    Checked 49
-  Input messages:  Total 147    Updates 11      Refreshes 0     Octets 3202
-  Output messages: Total 140    Updates 4       Refreshes 0     Octets 2879
-  Output Queue[0]: 0
+  Last traffic (seconds): Received 9    Sent 10   Checked 0
+  Input messages:  Total 16     Updates 5       Refreshes 0     Octets 508
+  Output messages: Total 15     Updates 4       Refreshes 0     Octets 504
