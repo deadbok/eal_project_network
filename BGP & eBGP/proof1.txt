@@ -346,3 +346,72 @@ Peer: 192.168.20.4+54693 AS 20 Local: 192.168.20.1+179 AS 20
   Input messages:  Total 13     Updates 6       Refreshes 0     Octets 492
   Output messages: Total 11     Updates 4       Refreshes 0     Octets 428
   Output Queue[0]: 0
+
+root@vSRX1> show route instance detail 
+master:
+  Router ID: 192.168.20.4
+  Type: forwarding        State: Active        
+  Tables:
+    inet.0                 : 4 routes (4 active, 0 holddown, 0 hidden)
+
+__juniper_private1__:
+  Router ID: 0.0.0.0
+  Type: forwarding        State: Active        
+  Interfaces:
+    sp-0/0/0.16383
+    lo0.16385
+  Tables:
+    __juniper_private1__.inet.0: 9 routes (7 active, 0 holddown, 0 hidden)
+
+__juniper_private2__:
+  Router ID: 0.0.0.0
+  Type: forwarding        State: Active        
+  Interfaces:
+    lo0.16384
+  Tables:
+    __juniper_private2__.inet.0: 1 routes (0 active, 0 holddown, 1 hidden)
+
+__master.anon__:
+  Router ID: 0.0.0.0
+  Type: forwarding        State: Active        
+
+vR1:
+  Router ID: 192.168.20.1
+  Type: virtual-router    State: Active        
+  Interfaces:
+    lt-0/0/0.2
+    lt-0/0/0.1
+    lo0.1
+  Tables:
+    vR1.inet.0             : 34 routes (13 active, 0 holddown, 8 hidden)
+
+vR2:
+  Router ID: 192.168.20.2
+  Type: virtual-router    State: Active        
+  Interfaces:
+    lt-0/0/0.4
+    lt-0/0/0.3
+    lo0.2
+  Tables:
+    vR2.inet.0             : 20 routes (13 active, 0 holddown, 3 hidden)
+
+vR3:
+  Router ID: 192.168.20.3
+  Type: virtual-router    State: Active        
+  Interfaces:
+    lt-0/0/0.5
+    lo0.3
+  Tables:
+    vR3.inet.0             : 19 routes (12 active, 0 holddown, 0 hidden)
+
+vR4:
+  Router ID: 192.168.20.4
+  Type: virtual-router    State: Active        
+  Interfaces:
+    lt-0/0/0.6
+    ge-0/0/1.0
+    lo0.
+Tables:
+    vR4.inet.0             : 21 routes (13 active, 0 holddown, 1 hidden)
+
+
