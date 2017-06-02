@@ -414,4 +414,239 @@ vR4:
 Tables:
     vR4.inet.0             : 21 routes (13 active, 0 holddown, 1 hidden)
 
+root@vSRX1> show route | no-more 
+
+inet.0: 4 destinations, 4 routes (4 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+0.0.0.0/0          *[Access-internal/12] 00:03:13
+                    > to 10.0.2.2 via ge-0/0/0.0
+10.0.2.0/24        *[Direct/0] 00:03:13
+                    > via ge-0/0/0.0
+10.0.2.15/32       *[Local/0] 00:03:13
+                      Local via ge-0/0/0.0
+192.168.1.1/32     *[Direct/0] 00:03:46
+                    > via lo0.0
+
+vR1.inet.0: 13 destinations, 34 routes (13 active, 0 holddown, 8 hidden)
++ = Active Route, - = Last Active, * = Both
+
+172.20.2.0/30      *[Direct/0] 00:03:21
+                    > via lt-0/0/0.2
+                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.2
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.3
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+172.20.2.2/32      *[Local/0] 00:03:21
+                      Local via lt-0/0/0.2
+172.20.3.0/30      *[OSPF/10] 00:02:30, metric 2
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.2
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.3
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+172.20.4.0/30      *[Direct/0] 00:03:21
+                    > via lt-0/0/0.1
+                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+                      AS path: I
+                    > to 172.20.4.1 via lt-0/0/0.1
+                    [BGP/170] 00:02:22, MED 3, localpref 100, from 192.168.20.3
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+172.20.4.2/32      *[Local/0] 00:03:21
+                      Local via lt-0/0/0.1
+172.20.5.0/24      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+                      AS path: I
+                    > to 172.20.4.1 via lt-0/0/0.1
+172.30.4.0/30      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+                      AS path: 30 I
+                    > to 172.20.4.1 via lt-0/0/0.1
+192.168.20.1/32    *[Direct/0] 00:03:46
+                    > via lo0.1
+                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.3
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+192.168.20.2/32    *[OSPF/10] 00:02:30, metric 1
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.2
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:02:22, MED 1, localpref 100, from 192.168.20.3
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+192.168.20.3/32    *[OSPF/10] 00:02:25, metric 2
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.3
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:02:30, MED 1, localpref 100, from 192.168.20.2
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+192.168.20.4/32    *[OSPF/10] 00:02:30, metric 1
+                    > to 172.20.4.1 via lt-0/0/0.1
+                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+                      AS path: I
+                    > to 172.20.4.1 via lt-0/0/0.1
+                    [BGP/170] 00:02:22, MED 3, localpref 100, from 192.168.20.3
+                      AS path: I
+                    > to 172.20.2.1 via lt-0/0/0.2
+192.168.30.4/32    *[BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+                      AS path: 30 I
+                    > to 172.20.4.1 via lt-0/0/0.1
+224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+                      MultiRecv
+
+vR2.inet.0: 13 destinations, 20 routes (13 active, 0 holddown, 3 hidden)
++ = Active Route, - = Last Active, * = Both
+
+172.20.2.0/30      *[Direct/0] 00:03:21
+                    > via lt-0/0/0.3
+                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.2.2 via lt-0/0/0.3
+172.20.2.1/32      *[Local/0] 00:03:21
+                      Local via lt-0/0/0.3
+172.20.3.0/30      *[Direct/0] 00:03:21
+                    > via lt-0/0/0.4
+172.20.3.2/32      *[Local/0] 00:03:21
+                      Local via lt-0/0/0.4
+172.20.4.0/30      *[OSPF/10] 00:02:30, metric 2
+                    > to 172.20.2.2 via lt-0/0/0.3
+                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.2.2 via lt-0/0/0.3
+172.20.5.0/24      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.2.2 via lt-0/0/0.3
+172.30.4.0/30      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.2.2 via lt-0/0/0.3
+192.168.20.1/32    *[OSPF/10] 00:02:30, metric 1
+                    > to 172.20.2.2 via lt-0/0/0.3
+                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.2.2 via lt-0/0/0.3
+192.168.20.2/32    *[Direct/0] 00:03:46
+                    > via lo0.2
+192.168.20.3/32    *[OSPF/10] 00:02:30, metric 1
+                    > to 172.20.3.1 via lt-0/0/0.4
+192.168.20.4/32    *[OSPF/10] 00:02:25, metric 2
+                    > to 172.20.2.2 via lt-0/0/0.3
+                    [BGP/170] 00:02:30, MED 1, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.2.2 via lt-0/0/0.3
+192.168.30.4/32    *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.2.2 via lt-0/0/0.3
+224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+                      MultiRecv
+
+vR3.inet.0: 12 destinations, 19 routes (12 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+172.20.2.0/30      *[OSPF/10] 00:02:25, metric 2
+                    > to 172.20.3.2 via lt-0/0/0.5
+                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+172.20.3.0/30      *[Direct/0] 00:03:21
+                    > via lt-0/0/0.5
+                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+172.20.3.1/32      *[Local/0] 00:03:21
+                      Local via lt-0/0/0.5
+172.20.4.0/30      *[OSPF/10] 00:02:25, metric 3
+                    > to 172.20.3.2 via lt-0/0/0.5
+                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+172.20.5.0/24      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+172.30.4.0/30      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.20.1/32    *[OSPF/10] 00:02:25, metric 2
+                    > to 172.20.3.2 via lt-0/0/0.5
+                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.20.2/32    *[OSPF/10] 00:02:25, metric 1
+                    > to 172.20.3.2 via lt-0/0/0.5
+                    [BGP/170] 00:02:22, MED 1, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.20.3/32    *[Direct/0] 00:03:46
+                    > via lo0.3
+                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.20.4/32    *[OSPF/10] 00:02:25, metric 3
+                    > to 172.20.3.2 via lt-0/0/0.5
+                    [BGP/170] 00:02:22, MED 1, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.30.4/32    *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.3.2 via lt-0/0/0.5
+224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+                      MultiRecv
+
+vR4.inet.0: 13 destinations, 21 routes (13 active, 0 holddown, 1 hidden)
++ = Active Route, - = Last Active, * = Both
+
+172.20.2.0/30      *[OSPF/10] 00:02:25, metric 2
+                    > to 172.20.4.2 via lt-0/0/0.6
+                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.4.2 via lt-0/0/0.6
+172.20.3.0/30      *[OSPF/10] 00:02:25, metric 3
+                    > to 172.20.4.2 via lt-0/0/0.6
+                    [BGP/170] 00:02:10, MED 2, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.4.2 via lt-0/0/0.6
+172.20.4.0/30      *[Direct/0] 00:03:21
+                    > via lt-0/0/0.6
+                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.4.2 via lt-0/0/0.6
+172.20.4.1/32      *[Local/0] 00:03:21
+                      Local via lt-0/0/0.6
+172.20.5.0/24      *[Direct/0] 00:03:20
+                    > via ge-0/0/1.0
+                    [BGP/170] 00:03:14, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+172.20.5.1/32      *[Local/0] 00:03:21
+                      Local via ge-0/0/1.0
+172.30.4.0/30      *[BGP/170] 00:03:14, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+192.168.20.1/32    *[OSPF/10] 00:02:25, metric 1
+                    > to 172.20.4.2 via lt-0/0/0.6
+                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.4.2 via lt-0/0/0.6
+192.168.20.2/32    *[OSPF/10] 00:02:25, metric 2
+                    > to 172.20.4.2 via lt-0/0/0.6
+                    [BGP/170] 00:02:10, MED 1, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.4.2 via lt-0/0/0.6
+192.168.20.3/32    *[OSPF/10] 00:02:25, metric 3
+                    > to 172.20.4.2 via lt-0/0/0.6
+                    [BGP/170] 00:02:10, MED 2, localpref 100, from 192.168.20.1
+                      AS path: I
+                    > to 172.20.4.2 via lt-0/0/0.6
+192.168.20.4/32    *[Direct/0] 00:03:46
+                    > via lo0.4
+192.168.30.4/32    *[BGP/170] 00:03:14, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+                      MultiRecv
 
