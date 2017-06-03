@@ -1,75 +1,76 @@
 root@vSRX1> show bgp summary
 Groups: 5 Peers: 9 Down peers: 2
 Peer                     AS      InPkt     OutPkt    OutQ   Flaps Last Up/Dwn State|#Active/Received/Accepted/Damped...
-172.20.5.2               30         10         11       0       0        3:11 Establ
-  vR4.inet.0: 2/3/3/0
-192.168.20.1             20         14         12       0       0        2:25 Establ
-  vR2.inet.0: 3/10/7/0
-192.168.20.1             20         12         11       0       0        2:17 Establ
-  vR3.inet.0: 3/10/10/0
-192.168.20.1             20          9         12       0       0        2:05 Establ
-  vR4.inet.0: 0/7/6/0
-192.168.20.2             20         11         14       0       0        2:25 Establ
-  vR1.inet.0: 0/7/4/0
-192.168.20.2             20          0          4       0       0        3:43 Active
-192.168.20.3             20         10         12       0       0        2:17 Establ
-  vR1.inet.0: 0/7/7/0
-192.168.20.3             20          0          4       0       0        3:43 Active
-192.168.20.4             20         12         10       0       0        2:05 Establ
-  vR1.inet.0: 3/10/5/0
+172.20.5.2               30         83         84       0       0       34:49 Establ
+  vR4.inet.0: 7/8/8/0
+192.168.20.1             20         87         82       0       0       34:05 Establ
+  vR2.inet.0: 8/11/11/0
+192.168.20.1             20         85         82       0       0       33:57 Establ
+  vR3.inet.0: 8/11/11/0
+192.168.20.1             20         79         85       0       0       33:45 Establ
+  vR4.inet.0: 0/3/3/0
+192.168.20.2             20         81         87       0       0       34:05 Establ
+  vR1.inet.0: 0/3/3/0
+192.168.20.2             20          0         30       0       0       35:22 Active
+192.168.20.3             20         81         85       0       0       33:57 Establ
+  vR1.inet.0: 0/2/2/0
+192.168.20.3             20          0         30       0       0       35:22 Active
+192.168.20.4             20         85         80       0       0       33:45 Establ
+  vR1.inet.0: 8/10/10/0
 
 root@vSRX1> show bgp group
 Group Type: Internal    AS: 20                     Local AS: 20
-  Name: internal-peers  Index: 0                   Flags: <Export Eval>
-  Export: [ send-direct send-ospf ]
+  Name: internal-peers  Index: 0                   Flags: <>
+  Export: [ send-direct ]
   Options: <Cluster>
   Holdtime: 0
   Total peers: 3        Established: 3
-  192.168.20.4+54693
+  192.168.20.4+61598
   192.168.20.2+179
   192.168.20.3+179
-  vR1.inet.0: 3/24/16/0
+  vR1.inet.0: 8/15/15/0
 
 Group Type: Internal    AS: 20                     Local AS: 20
-  Name: internal-peers  Index: 1                   Flags: <Export Eval>
-  Export: [ send-direct send-ospf ]
+  Name: internal-peers  Index: 1                   Flags: <>
+  Export: [ send-direct ]
   Holdtime: 0
   Total peers: 1        Established: 1
-  192.168.20.1+54090
-  vR2.inet.0: 3/10/7/0
+  192.168.20.1+55359
+  vR2.inet.0: 8/11/11/0
 
 Group Type: Internal    AS: 20                     Local AS: 20
-  Name: internal-peers  Index: 2                   Flags: <Export Eval>
-  Export: [ send-direct send-ospf ]
+  Name: internal-peers  Index: 2                   Flags: <>
+  Export: [ send-direct ]
   Holdtime: 0
   Total peers: 1        Established: 1
-  192.168.20.1+57784
-  vR3.inet.0: 3/10/10/0
+  192.168.20.1+59913
+  vR3.inet.0: 8/11/11/0
 
 Group Type: Internal    AS: 20                     Local AS: 20
   Name: internal-peers  Index: 3                   Flags: <Export Eval>
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Holdtime: 0
   Total peers: 3        Established: 1
   192.168.20.1+179
   192.168.20.2
   192.168.20.3
-  vR4.inet.0: 0/7/6/0
+  vR4.inet.0: 0/3/3/0
 
 Group Type: External                               Local AS: 20
   Name: external-peers  Index: 4                   Flags: <>
+  Export: [ send-ospf ]
   Options: <AdvertisePeerAs>
   Holdtime: 0
   Total peers: 1        Established: 1
   172.20.5.2+179
-  vR4.inet.0: 2/3/3/0
+  vR4.inet.0: 7/8/8/0
 
 Groups: 5  Peers: 9    External: 1    Internal: 8    Down peers: 2   Flaps: 0
 Table          Tot Paths  Act Paths Suppressed    History Damp State    Pending
-vR1.inet.0            24          3          0          0          0          0
-vR2.inet.0            10          3          0          0          0          0
-vR3.inet.0            10          3          0          0          0          0
-vR4.inet.0            10          2          0          0          0          0
+vR1.inet.0            15          8          0          0          0          0
+vR2.inet.0            11          8          0          0          0          0
+vR3.inet.0            11          8          0          0          0          0
+vR4.inet.0            11          7          0          0          0          0
 vR1.mdt.0              0          0          0          0          0          0
 vR2.mdt.0              0          0          0          0          0          0
 vR3.mdt.0              0          0          0          0          0          0
@@ -80,6 +81,7 @@ Peer: 172.20.5.2+179 AS 30     Local: 172.20.5.1+50881 AS 20
   Type: External    State: Established    Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
+  Export: [ send-ospf ]
   Options: <Preference PeerAS Refresh>
   Options: <AdvertisePeerAs>
   Holdtime: 90 Preference: 170
@@ -103,21 +105,21 @@ Peer: 172.20.5.2+179 AS 30     Local: 172.20.5.1+50881 AS 20
     RIB State: BGP restart is complete
     RIB State: VPN restart is complete
     Send state: in sync
-    Active prefixes:              2
-    Received prefixes:            3
-    Accepted prefixes:            3
+    Active prefixes:              7
+    Received prefixes:            8
+    Accepted prefixes:            8
     Suppressed due to damping:    0
-    Advertised prefixes:          2
-  Last traffic (seconds): Received 11   Sent 15   Checked 58
-  Input messages:  Total 11     Updates 2       Refreshes 0     Octets 251
-  Output messages: Total 12     Updates 1       Refreshes 0     Octets 329
+    Advertised prefixes:          12
+  Last traffic (seconds): Received 7    Sent 6    Checked 27
+  Input messages:  Total 84     Updates 7       Refreshes 0     Octets 1837
+  Output messages: Total 85     Updates 6       Refreshes 0     Octets 1915
   Output Queue[3]: 0
 
-Peer: 192.168.20.1+54090 AS 20 Local: 192.168.20.2+179 AS 20
+Peer: 192.168.20.1+55359 AS 20 Local: 192.168.20.2+179 AS 20
   Type: Internal    State: Established    Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Refresh>
   Local Address: 192.168.20.2 Holdtime: 90 Preference: 170
   Number of flaps: 0
@@ -139,21 +141,21 @@ Peer: 192.168.20.1+54090 AS 20 Local: 192.168.20.2+179 AS 20
     RIB State: BGP restart is complete
     RIB State: VPN restart is complete
     Send state: in sync
-    Active prefixes:              3
-    Received prefixes:            10
-    Accepted prefixes:            7
+    Active prefixes:              8
+    Received prefixes:            11
+    Accepted prefixes:            11
     Suppressed due to damping:    0
-    Advertised prefixes:          7
-  Last traffic (seconds): Received 17   Sent 17   Checked 4
-  Input messages:  Total 15     Updates 7       Refreshes 0     Octets 583
-  Output messages: Total 13     Updates 4       Refreshes 0     Octets 466
+    Advertised prefixes:          3
+  Last traffic (seconds): Received 18   Sent 18   Checked 67
+  Input messages:  Total 87     Updates 11      Refreshes 0     Octets 2156
+  Output messages: Total 82     Updates 5       Refreshes 0     Octets 1801
   Output Queue[1]: 0
 
-Peer: 192.168.20.1+57784 AS 20 Local: 192.168.20.3+179 AS 20
+Peer: 192.168.20.1+59913 AS 20 Local: 192.168.20.3+179 AS 20
   Type: Internal    State: Established    Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Refresh>
   Local Address: 192.168.20.3 Holdtime: 90 Preference: 170
   Number of flaps: 0
@@ -175,21 +177,21 @@ Peer: 192.168.20.1+57784 AS 20 Local: 192.168.20.3+179 AS 20
     RIB State: BGP restart is complete
     RIB State: VPN restart is complete
     Send state: in sync
-    Active prefixes:              3
-    Received prefixes:            10
-    Accepted prefixes:            10
+    Active prefixes:              8
+    Received prefixes:            11
+    Accepted prefixes:            11
     Suppressed due to damping:    0
-    Advertised prefixes:          7
-  Last traffic (seconds): Received 3    Sent 6    Checked 80
-  Input messages:  Total 14     Updates 7       Refreshes 0     Octets 564
-  Output messages: Total 13     Updates 4       Refreshes 0     Octets 466
+    Advertised prefixes:          2
+  Last traffic (seconds): Received 6    Sent 18   Checked 53
+  Input messages:  Total 86     Updates 11      Refreshes 0     Octets 2137
+  Output messages: Total 82     Updates 5       Refreshes 0     Octets 1806
   Output Queue[2]: 0
 
-Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.4+54693 AS 20
+Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.4+61598 AS 20
   Type: Internal    State: Established    Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Refresh>
   Local Address: 192.168.20.4 Holdtime: 90 Preference: 170
   Number of flaps: 0
@@ -212,20 +214,20 @@ Peer: 192.168.20.1+179 AS 20   Local: 192.168.20.4+54693 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              0
-    Received prefixes:            7
-    Accepted prefixes:            6
+    Received prefixes:            3
+    Accepted prefixes:            3
     Suppressed due to damping:    0
     Advertised prefixes:          10
-  Last traffic (seconds): Received 28   Sent 28   Checked 68
-  Input messages:  Total 10     Updates 5       Refreshes 0     Octets 350
-  Output messages: Total 13     Updates 5       Refreshes 0     Octets 511
+  Last traffic (seconds): Received 4    Sent 20   Checked 48
+  Input messages:  Total 80     Updates 6       Refreshes 0     Octets 1704
+  Output messages: Total 85     Updates 9       Refreshes 0     Octets 2047
   Output Queue[3]: 0
 
-Peer: 192.168.20.2+179 AS 20   Local: 192.168.20.1+54090 AS 20
+Peer: 192.168.20.2+179 AS 20   Local: 192.168.20.1+55359 AS 20
   Type: Internal    State: Established  (route reflector client)Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Cluster Refresh>
   Local Address: 192.168.20.1 Holdtime: 90 Preference: 170
   Number of flaps: 0
@@ -248,29 +250,29 @@ Peer: 192.168.20.2+179 AS 20   Local: 192.168.20.1+54090 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              0
-    Received prefixes:            7
-    Accepted prefixes:            4
+    Received prefixes:            3
+    Accepted prefixes:            3
     Suppressed due to damping:    0
-    Advertised prefixes:          10
-  Last traffic (seconds): Received 17   Sent 17   Checked 4
-  Input messages:  Total 12     Updates 5       Refreshes 0     Octets 388
-  Output messages: Total 15     Updates 6       Refreshes 0     Octets 602
+    Advertised prefixes:          11
+  Last traffic (seconds): Received 18   Sent 18   Checked 72
+  Input messages:  Total 81     Updates 6       Refreshes 0     Octets 1723
+  Output messages: Total 87     Updates 10      Refreshes 0     Octets 2175
   Output Queue[0]: 0
 
 Peer: 192.168.20.2 AS 20       Local: 192.168.20.4 AS 20
   Type: Internal    State: Active         Flags: <ImportEval>
   Last State: Idle          Last Event: Start
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Refresh>
   Local Address: 192.168.20.4 Holdtime: 90 Preference: 170
   Number of flaps: 0
 
-Peer: 192.168.20.3+179 AS 20   Local: 192.168.20.1+57784 AS 20
+Peer: 192.168.20.3+179 AS 20   Local: 192.168.20.1+59913 AS 20
   Type: Internal    State: Established  (route reflector client)Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Cluster Refresh>
   Local Address: 192.168.20.1 Holdtime: 90 Preference: 170
   Number of flaps: 0
@@ -293,29 +295,29 @@ Peer: 192.168.20.3+179 AS 20   Local: 192.168.20.1+57784 AS 20
     RIB State: VPN restart is complete
     Send state: in sync
     Active prefixes:              0
-    Received prefixes:            7
-    Accepted prefixes:            7
+    Received prefixes:            2
+    Accepted prefixes:            2
     Suppressed due to damping:    0
-    Advertised prefixes:          10
-  Last traffic (seconds): Received 6    Sent 3    Checked 80
-  Input messages:  Total 12     Updates 5       Refreshes 0     Octets 388
-  Output messages: Total 14     Updates 6       Refreshes 0     Octets 583
+    Advertised prefixes:          11
+  Last traffic (seconds): Received 18   Sent 6    Checked 59
+  Input messages:  Total 81     Updates 6       Refreshes 0     Octets 1728
+  Output messages: Total 86     Updates 10      Refreshes 0     Octets 2156
   Output Queue[0]: 0
 
 Peer: 192.168.20.3 AS 20       Local: 192.168.20.4 AS 20
   Type: Internal    State: Active         Flags: <ImportEval>
   Last State: Idle          Last Event: Start
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Refresh>
   Local Address: 192.168.20.4 Holdtime: 90 Preference: 170
   Number of flaps: 0
 
-Peer: 192.168.20.4+54693 AS 20 Local: 192.168.20.1+179 AS 20
+Peer: 192.168.20.4+61598 AS 20 Local: 192.168.20.1+179 AS 20
   Type: Internal    State: Established  (route reflector client)Flags: <Sync>
   Last State: OpenConfirm   Last Event: RecvKeepAlive
   Last Error: None
-  Export: [ send-direct send-ospf ]
+  Export: [ send-direct ]
   Options: <Preference LocalAddress Cluster Refresh>
   Local Address: 192.168.20.1 Holdtime: 90 Preference: 170
   Number of flaps: 0
@@ -337,26 +339,26 @@ Peer: 192.168.20.4+54693 AS 20 Local: 192.168.20.1+179 AS 20
     RIB State: BGP restart is complete
     RIB State: VPN restart is complete
     Send state: in sync
-    Active prefixes:              3
+    Active prefixes:              8
     Received prefixes:            10
-    Accepted prefixes:            5
+    Accepted prefixes:            10
     Suppressed due to damping:    0
-    Advertised prefixes:          7
-  Last traffic (seconds): Received 28   Sent 28   Checked 68
-  Input messages:  Total 13     Updates 6       Refreshes 0     Octets 492
-  Output messages: Total 11     Updates 4       Refreshes 0     Octets 428
+    Advertised prefixes:          3
+  Last traffic (seconds): Received 20   Sent 4    Checked 44
+  Input messages:  Total 85     Updates 10      Refreshes 0     Octets 2028
+  Output messages: Total 81     Updates 5       Refreshes 0     Octets 1782
   Output Queue[0]: 0
 
 root@vSRX1> show route instance detail 
 master:
   Router ID: 192.168.20.4
-  Type: forwarding        State: Active        
+  Type: forwarding        State: Active
   Tables:
     inet.0                 : 4 routes (4 active, 0 holddown, 0 hidden)
 
 __juniper_private1__:
   Router ID: 0.0.0.0
-  Type: forwarding        State: Active        
+  Type: forwarding        State: Active
   Interfaces:
     sp-0/0/0.16383
     lo0.16385
@@ -365,7 +367,7 @@ __juniper_private1__:
 
 __juniper_private2__:
   Router ID: 0.0.0.0
-  Type: forwarding        State: Active        
+  Type: forwarding        State: Active
   Interfaces:
     lo0.16384
   Tables:
@@ -373,280 +375,297 @@ __juniper_private2__:
 
 __master.anon__:
   Router ID: 0.0.0.0
-  Type: forwarding        State: Active        
+  Type: forwarding        State: Active
 
 vR1:
   Router ID: 192.168.20.1
-  Type: virtual-router    State: Active        
+  Type: virtual-router    State: Active
   Interfaces:
     lt-0/0/0.2
     lt-0/0/0.1
     lo0.1
   Tables:
-    vR1.inet.0             : 34 routes (13 active, 0 holddown, 8 hidden)
+    vR1.inet.0             : 25 routes (18 active, 0 holddown, 0 hidden)
 
 vR2:
   Router ID: 192.168.20.2
-  Type: virtual-router    State: Active        
+  Type: virtual-router    State: Active
   Interfaces:
     lt-0/0/0.4
     lt-0/0/0.3
     lo0.2
   Tables:
-    vR2.inet.0             : 20 routes (13 active, 0 holddown, 3 hidden)
+    vR2.inet.0             : 21 routes (18 active, 0 holddown, 0 hidden)
 
 vR3:
   Router ID: 192.168.20.3
-  Type: virtual-router    State: Active        
+  Type: virtual-router    State: Active
   Interfaces:
     lt-0/0/0.5
     lo0.3
   Tables:
-    vR3.inet.0             : 19 routes (12 active, 0 holddown, 0 hidden)
+    vR3.inet.0             : 20 routes (17 active, 0 holddown, 0 hidden)
 
 vR4:
   Router ID: 192.168.20.4
-  Type: virtual-router    State: Active        
+  Type: virtual-router    State: Active
   Interfaces:
-    lt-0/0/0.6
     ge-0/0/1.0
-    lo0.
-Tables:
-    vR4.inet.0             : 21 routes (13 active, 0 holddown, 1 hidden)
+    lt-0/0/0.6
+    lo0.4
+  Tables:
+    vR4.inet.0             : 22 routes (18 active, 0 holddown, 0 hidden)
 
-root@vSRX1> show route | no-more 
+root@vSRX1> show route | no-more
 
 inet.0: 4 destinations, 4 routes (4 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
-0.0.0.0/0          *[Access-internal/12] 00:03:13
+0.0.0.0/0          *[Access-internal/12] 00:35:55
                     > to 10.0.2.2 via ge-0/0/0.0
-10.0.2.0/24        *[Direct/0] 00:03:13
+10.0.2.0/24        *[Direct/0] 00:35:55
                     > via ge-0/0/0.0
-10.0.2.15/32       *[Local/0] 00:03:13
+10.0.2.15/32       *[Local/0] 00:35:55
                       Local via ge-0/0/0.0
-192.168.1.1/32     *[Direct/0] 00:03:46
+192.168.1.1/32     *[Direct/0] 00:36:29
                     > via lo0.0
 
-vR1.inet.0: 13 destinations, 34 routes (13 active, 0 holddown, 8 hidden)
+vR1.inet.0: 18 destinations, 25 routes (18 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
-172.20.2.0/30      *[Direct/0] 00:03:21
+172.20.2.0/30      *[Direct/0] 00:36:04
                     > via lt-0/0/0.2
-                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.2
+                    [BGP/170] 00:35:13, localpref 100, from 192.168.20.2
                       AS path: I
                     > to 172.20.2.1 via lt-0/0/0.2
-                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.3
-                      AS path: I
-                    > to 172.20.2.1 via lt-0/0/0.2
-172.20.2.2/32      *[Local/0] 00:03:21
+172.20.2.2/32      *[Local/0] 00:36:04
                       Local via lt-0/0/0.2
-172.20.3.0/30      *[OSPF/10] 00:02:30, metric 2
+172.20.3.0/30      *[OSPF/10] 00:35:13, metric 2
                     > to 172.20.2.1 via lt-0/0/0.2
-                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.2
+                    [BGP/170] 00:35:13, localpref 100, from 192.168.20.2
                       AS path: I
                     > to 172.20.2.1 via lt-0/0/0.2
-                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.3
+                    [BGP/170] 00:35:05, localpref 100, from 192.168.20.3
                       AS path: I
                     > to 172.20.2.1 via lt-0/0/0.2
-172.20.4.0/30      *[Direct/0] 00:03:21
+172.20.4.0/30      *[Direct/0] 00:36:03
                     > via lt-0/0/0.1
-                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+                    [BGP/170] 00:34:53, localpref 100, from 192.168.20.4
                       AS path: I
                     > to 172.20.4.1 via lt-0/0/0.1
-                    [BGP/170] 00:02:22, MED 3, localpref 100, from 192.168.20.3
-                      AS path: I
-                    > to 172.20.2.1 via lt-0/0/0.2
-172.20.4.2/32      *[Local/0] 00:03:21
+172.20.4.2/32      *[Local/0] 00:36:04
                       Local via lt-0/0/0.1
-172.20.5.0/24      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+172.20.5.0/24      *[BGP/170] 00:34:53, localpref 100, from 192.168.20.4
                       AS path: I
                     > to 172.20.4.1 via lt-0/0/0.1
-172.30.4.0/30      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+172.30.2.0/30      *[BGP/170] 00:08:23, MED 2, localpref 100, from 192.168.20.4
                       AS path: 30 I
                     > to 172.20.4.1 via lt-0/0/0.1
-192.168.20.1/32    *[Direct/0] 00:03:46
+172.30.3.0/30      *[BGP/170] 00:08:23, MED 3, localpref 100, from 192.168.20.4
+                      AS path: 30 I
+                    > to 172.20.4.1 via lt-0/0/0.1
+172.30.4.0/30      *[BGP/170] 00:34:53, localpref 100, from 192.168.20.4
+                      AS path: 30 I
+                    > to 172.20.4.1 via lt-0/0/0.1
+192.168.20.1/32    *[Direct/0] 00:36:29
                     > via lo0.1
-                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.3
+192.168.20.2/32    *[OSPF/10] 00:35:13, metric 1
+                    > to 172.20.2.1 via lt-0/0/0.2
+                    [BGP/170] 00:35:13, localpref 100, from 192.168.20.2
                       AS path: I
                     > to 172.20.2.1 via lt-0/0/0.2
-192.168.20.2/32    *[OSPF/10] 00:02:30, metric 1
+192.168.20.3/32    *[OSPF/10] 00:35:13, metric 2
                     > to 172.20.2.1 via lt-0/0/0.2
-                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.2
+                    [BGP/170] 00:35:05, localpref 100, from 192.168.20.3
                       AS path: I
                     > to 172.20.2.1 via lt-0/0/0.2
-                    [BGP/170] 00:02:22, MED 1, localpref 100, from 192.168.20.3
-                      AS path: I
-                    > to 172.20.2.1 via lt-0/0/0.2
-192.168.20.3/32    *[OSPF/10] 00:02:25, metric 2
-                    > to 172.20.2.1 via lt-0/0/0.2
-                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.3
-                      AS path: I
-                    > to 172.20.2.1 via lt-0/0/0.2
-                    [BGP/170] 00:02:30, MED 1, localpref 100, from 192.168.20.2
-                      AS path: I
-                    > to 172.20.2.1 via lt-0/0/0.2
-192.168.20.4/32    *[OSPF/10] 00:02:30, metric 1
+192.168.20.4/32    *[OSPF/10] 00:35:13, metric 1
                     > to 172.20.4.1 via lt-0/0/0.1
-                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+                    [BGP/170] 00:34:53, localpref 100, from 192.168.20.4
                       AS path: I
                     > to 172.20.4.1 via lt-0/0/0.1
-                    [BGP/170] 00:02:22, MED 3, localpref 100, from 192.168.20.3
-                      AS path: I
-                    > to 172.20.2.1 via lt-0/0/0.2
-192.168.30.4/32    *[BGP/170] 00:02:10, localpref 100, from 192.168.20.4
+192.168.30.1/32    *[BGP/170] 00:08:23, MED 1, localpref 100, from 192.168.20.4
                       AS path: 30 I
                     > to 172.20.4.1 via lt-0/0/0.1
-224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+192.168.30.2/32    *[BGP/170] 00:08:23, MED 2, localpref 100, from 192.168.20.4
+                      AS path: 30 I
+                    > to 172.20.4.1 via lt-0/0/0.1
+192.168.30.3/32    *[BGP/170] 00:08:23, MED 3, localpref 100, from 192.168.20.4
+                      AS path: 30 I
+                    > to 172.20.4.1 via lt-0/0/0.1
+192.168.30.4/32    *[BGP/170] 00:34:53, localpref 100, from 192.168.20.4
+                      AS path: 30 I
+                    > to 172.20.4.1 via lt-0/0/0.1
+224.0.0.5/32       *[OSPF/10] 00:36:31, metric 1
                       MultiRecv
 
-vR2.inet.0: 13 destinations, 20 routes (13 active, 0 holddown, 3 hidden)
+vR2.inet.0: 18 destinations, 21 routes (18 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
-172.20.2.0/30      *[Direct/0] 00:03:21
+172.20.2.0/30      *[Direct/0] 00:36:03
                     > via lt-0/0/0.3
-                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.1
+                    [BGP/170] 00:35:13, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.2.2 via lt-0/0/0.3
-172.20.2.1/32      *[Local/0] 00:03:21
+172.20.2.1/32      *[Local/0] 00:36:03
                       Local via lt-0/0/0.3
-172.20.3.0/30      *[Direct/0] 00:03:21
+172.20.3.0/30      *[Direct/0] 00:36:03
                     > via lt-0/0/0.4
-172.20.3.2/32      *[Local/0] 00:03:21
+172.20.3.2/32      *[Local/0] 00:36:03
                       Local via lt-0/0/0.4
-172.20.4.0/30      *[OSPF/10] 00:02:30, metric 2
+172.20.4.0/30      *[OSPF/10] 00:35:13, metric 2
                     > to 172.20.2.2 via lt-0/0/0.3
-                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.1
+                    [BGP/170] 00:35:13, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.2.2 via lt-0/0/0.3
-172.20.5.0/24      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+172.20.5.0/24      *[BGP/170] 00:34:53, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.2.2 via lt-0/0/0.3
-172.30.4.0/30      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+172.30.2.0/30      *[BGP/170] 00:08:23, MED 2, localpref 100, from 192.168.20.1
                       AS path: 30 I
                     > to 172.20.2.2 via lt-0/0/0.3
-192.168.20.1/32    *[OSPF/10] 00:02:30, metric 1
+172.30.3.0/30      *[BGP/170] 00:08:23, MED 3, localpref 100, from 192.168.20.1
+                      AS path: 30 I
                     > to 172.20.2.2 via lt-0/0/0.3
-                    [BGP/170] 00:02:30, localpref 100, from 192.168.20.1
+172.30.4.0/30      *[BGP/170] 00:34:52, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.2.2 via lt-0/0/0.3
+192.168.20.1/32    *[OSPF/10] 00:35:13, metric 1
+                    > to 172.20.2.2 via lt-0/0/0.3
+                    [BGP/170] 00:35:13, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.2.2 via lt-0/0/0.3
-192.168.20.2/32    *[Direct/0] 00:03:46
+192.168.20.2/32    *[Direct/0] 00:36:29
                     > via lo0.2
-192.168.20.3/32    *[OSPF/10] 00:02:30, metric 1
+192.168.20.3/32    *[OSPF/10] 00:35:13, metric 1
                     > to 172.20.3.1 via lt-0/0/0.4
-192.168.20.4/32    *[OSPF/10] 00:02:25, metric 2
+192.168.20.4/32    *[OSPF/10] 00:35:13, metric 2
                     > to 172.20.2.2 via lt-0/0/0.3
-                    [BGP/170] 00:02:30, MED 1, localpref 100, from 192.168.20.1
-                      AS path: I
-                    > to 172.20.2.2 via lt-0/0/0.3
-192.168.30.4/32    *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+192.168.30.1/32    *[BGP/170] 00:08:23, MED 1, localpref 100, from 192.168.20.1
                       AS path: 30 I
                     > to 172.20.2.2 via lt-0/0/0.3
-224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+192.168.30.2/32    *[BGP/170] 00:08:23, MED 2, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.2.2 via lt-0/0/0.3
+192.168.30.3/32    *[BGP/170] 00:08:23, MED 3, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.2.2 via lt-0/0/0.3
+192.168.30.4/32    *[BGP/170] 00:34:52, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.2.2 via lt-0/0/0.3
+224.0.0.5/32       *[OSPF/10] 00:36:31, metric 1
                       MultiRecv
 
-vR3.inet.0: 12 destinations, 19 routes (12 active, 0 holddown, 0 hidden)
+vR3.inet.0: 17 destinations, 20 routes (17 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
-172.20.2.0/30      *[OSPF/10] 00:02:25, metric 2
+172.20.2.0/30      *[OSPF/10] 00:35:14, metric 2
                     > to 172.20.3.2 via lt-0/0/0.5
-                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.1
+                    [BGP/170] 00:35:05, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.3.2 via lt-0/0/0.5
-172.20.3.0/30      *[Direct/0] 00:03:21
+172.20.3.0/30      *[Direct/0] 00:36:03
                     > via lt-0/0/0.5
-                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.1
-                      AS path: I
-                    > to 172.20.3.2 via lt-0/0/0.5
-172.20.3.1/32      *[Local/0] 00:03:21
+172.20.3.1/32      *[Local/0] 00:36:03
                       Local via lt-0/0/0.5
-172.20.4.0/30      *[OSPF/10] 00:02:25, metric 3
+172.20.4.0/30      *[OSPF/10] 00:35:09, metric 3
                     > to 172.20.3.2 via lt-0/0/0.5
-                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.1
+                    [BGP/170] 00:35:05, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.3.2 via lt-0/0/0.5
-172.20.5.0/24      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+172.20.5.0/24      *[BGP/170] 00:34:53, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.3.2 via lt-0/0/0.5
-172.30.4.0/30      *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+172.30.2.0/30      *[BGP/170] 00:08:23, MED 2, localpref 100, from 192.168.20.1
                       AS path: 30 I
                     > to 172.20.3.2 via lt-0/0/0.5
-192.168.20.1/32    *[OSPF/10] 00:02:25, metric 2
+172.30.3.0/30      *[BGP/170] 00:08:23, MED 3, localpref 100, from 192.168.20.1
+                      AS path: 30 I
                     > to 172.20.3.2 via lt-0/0/0.5
-                    [BGP/170] 00:02:22, localpref 100, from 192.168.20.1
+172.30.4.0/30      *[BGP/170] 00:34:52, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.20.1/32    *[OSPF/10] 00:35:14, metric 2
+                    > to 172.20.3.2 via lt-0/0/0.5
+                    [BGP/170] 00:35:05, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.3.2 via lt-0/0/0.5
-192.168.20.2/32    *[OSPF/10] 00:02:25, metric 1
+192.168.20.2/32    *[OSPF/10] 00:35:14, metric 1
                     > to 172.20.3.2 via lt-0/0/0.5
-                    [BGP/170] 00:02:22, MED 1, localpref 100, from 192.168.20.1
-                      AS path: I
-                    > to 172.20.3.2 via lt-0/0/0.5
-192.168.20.3/32    *[Direct/0] 00:03:46
+192.168.20.3/32    *[Direct/0] 00:36:29
                     > via lo0.3
-                    [BGP/170] 00:02:22, MED 2, localpref 100, from 192.168.20.1
-                      AS path: I
+192.168.20.4/32    *[OSPF/10] 00:35:09, metric 3
                     > to 172.20.3.2 via lt-0/0/0.5
-192.168.20.4/32    *[OSPF/10] 00:02:25, metric 3
-                    > to 172.20.3.2 via lt-0/0/0.5
-                    [BGP/170] 00:02:22, MED 1, localpref 100, from 192.168.20.1
-                      AS path: I
-                    > to 172.20.3.2 via lt-0/0/0.5
-192.168.30.4/32    *[BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+192.168.30.1/32    *[BGP/170] 00:08:23, MED 1, localpref 100, from 192.168.20.1
                       AS path: 30 I
                     > to 172.20.3.2 via lt-0/0/0.5
-224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+192.168.30.2/32    *[BGP/170] 00:08:23, MED 2, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.30.3/32    *[BGP/170] 00:08:23, MED 3, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.3.2 via lt-0/0/0.5
+192.168.30.4/32    *[BGP/170] 00:34:52, localpref 100, from 192.168.20.1
+                      AS path: 30 I
+                    > to 172.20.3.2 via lt-0/0/0.5
+224.0.0.5/32       *[OSPF/10] 00:36:31, metric 1
                       MultiRecv
 
-vR4.inet.0: 13 destinations, 21 routes (13 active, 0 holddown, 1 hidden)
+vR4.inet.0: 18 destinations, 22 routes (18 active, 0 holddown, 0 hidden)
 + = Active Route, - = Last Active, * = Both
 
-172.20.2.0/30      *[OSPF/10] 00:02:25, metric 2
+172.20.2.0/30      *[OSPF/10] 00:35:13, metric 2
                     > to 172.20.4.2 via lt-0/0/0.6
-                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                    [BGP/170] 00:34:53, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.4.2 via lt-0/0/0.6
-172.20.3.0/30      *[OSPF/10] 00:02:25, metric 3
+172.20.3.0/30      *[OSPF/10] 00:35:08, metric 3
                     > to 172.20.4.2 via lt-0/0/0.6
-                    [BGP/170] 00:02:10, MED 2, localpref 100, from 192.168.20.1
-                      AS path: I
-                    > to 172.20.4.2 via lt-0/0/0.6
-172.20.4.0/30      *[Direct/0] 00:03:21
+172.20.4.0/30      *[Direct/0] 00:36:03
                     > via lt-0/0/0.6
-                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                    [BGP/170] 00:34:53, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.4.2 via lt-0/0/0.6
-172.20.4.1/32      *[Local/0] 00:03:21
+172.20.4.1/32      *[Local/0] 00:36:03
                       Local via lt-0/0/0.6
-172.20.5.0/24      *[Direct/0] 00:03:20
+172.20.5.0/24      *[Direct/0] 00:36:01
                     > via ge-0/0/1.0
-                    [BGP/170] 00:03:14, localpref 100
+                    [BGP/170] 00:35:57, localpref 100
                       AS path: 30 I
                     > to 172.20.5.2 via ge-0/0/1.0
-172.20.5.1/32      *[Local/0] 00:03:21
+172.20.5.1/32      *[Local/0] 00:36:03
                       Local via ge-0/0/1.0
-172.30.4.0/30      *[BGP/170] 00:03:14, localpref 100
+172.30.2.0/30      *[BGP/170] 00:08:23, MED 2, localpref 100
                       AS path: 30 I
                     > to 172.20.5.2 via ge-0/0/1.0
-192.168.20.1/32    *[OSPF/10] 00:02:25, metric 1
+172.30.3.0/30      *[BGP/170] 00:08:23, MED 3, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+172.30.4.0/30      *[BGP/170] 00:35:57, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+192.168.20.1/32    *[OSPF/10] 00:35:13, metric 1
                     > to 172.20.4.2 via lt-0/0/0.6
-                    [BGP/170] 00:02:10, localpref 100, from 192.168.20.1
+                    [BGP/170] 00:34:53, localpref 100, from 192.168.20.1
                       AS path: I
                     > to 172.20.4.2 via lt-0/0/0.6
-192.168.20.2/32    *[OSPF/10] 00:02:25, metric 2
+192.168.20.2/32    *[OSPF/10] 00:35:13, metric 2
                     > to 172.20.4.2 via lt-0/0/0.6
-                    [BGP/170] 00:02:10, MED 1, localpref 100, from 192.168.20.1
-                      AS path: I
+192.168.20.3/32    *[OSPF/10] 00:35:08, metric 3
                     > to 172.20.4.2 via lt-0/0/0.6
-192.168.20.3/32    *[OSPF/10] 00:02:25, metric 3
-                    > to 172.20.4.2 via lt-0/0/0.6
-                    [BGP/170] 00:02:10, MED 2, localpref 100, from 192.168.20.1
-                      AS path: I
-                    > to 172.20.4.2 via lt-0/0/0.6
-192.168.20.4/32    *[Direct/0] 00:03:46
+192.168.20.4/32    *[Direct/0] 00:36:29
                     > via lo0.4
-192.168.30.4/32    *[BGP/170] 00:03:14, localpref 100
+192.168.30.1/32    *[BGP/170] 00:08:23, MED 1, localpref 100
                       AS path: 30 I
                     > to 172.20.5.2 via ge-0/0/1.0
-224.0.0.5/32       *[OSPF/10] 00:03:48, metric 1
+192.168.30.2/32    *[BGP/170] 00:08:23, MED 2, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+192.168.30.3/32    *[BGP/170] 00:08:23, MED 3, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+192.168.30.4/32    *[BGP/170] 00:35:57, localpref 100
+                      AS path: 30 I
+                    > to 172.20.5.2 via ge-0/0/1.0
+224.0.0.5/32       *[OSPF/10] 00:36:31, metric 1
                       MultiRecv
-
